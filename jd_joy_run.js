@@ -1,6 +1,6 @@
 /**
 宠汪汪邀请助力与赛跑助力脚本，感谢github@Zero-S1提供帮助
-更新时间：2021-1-7（宠汪汪助力更新Token的配置正则表达式已改）
+更新时间：2021-2-20（宠汪汪助力更新Token的配置正则表达式已改）
 活动入口：京东APP我的-更多工具-宠汪汪
 token时效很短，几个小时就失效了,闲麻烦的放弃就行
 每天拿到token后，可一次性运行完毕即可。
@@ -46,18 +46,18 @@ const $ = new Env('宠汪汪赛跑');
 const JD_BASE_API = `https://draw.jdfcloud.com//pet`;
 //此处填入你需要助力好友的京东用户名
 //下面给出好友邀请助力的示例填写规则
-let invite_pins = ["jd_6cd93e613b0e5,被折叠的记忆33,jd_704a2e5e28a66,jd_45a6b5953b15b,zooooo58,jd_66f5cecc1efcd,jd_41345a6f96aa5,jd_sIhNpDXJehOr,jd_mCbhXxmqzYJC"];
+let invite_pins = ["jd_620b506d07889,jd_qvAijclDYexz,jd_kuIoyQouhCLm,q450878-912928,jd_DyPZZzNZQFxZ,jd_6b297f87eaff5,jd_cVUKwYXtUEcZ,jd_4337529e557ac,jd_75e5e2a4f7e13,jd_620b506d07889,jd_620b506d07889,jd_qvAijclDYexz,jd_kuIoyQouhCLm,q450878-912928,jd_DyPZZzNZQFxZ"];
 //下面给出好友赛跑助力的示例填写规则
-let run_pins = ["被折叠的记忆33,jd_6cd93e613b0e5,jd_45a6b5953b15b,jd_66f5cecc1efcd,jd_sIhNpDXJehOr,jd_41345a6f96aa5,jd_704a2e5e28a66,zooooo58,jd_5851f32d4a083,jd_mCbhXxmqzYJC,wddpzLSxORvLGo"];
+let run_pins = ["jd_620b506d07889,jd_qvAijclDYexz,jd_kuIoyQouhCLm,q450878-912928,jd_DyPZZzNZQFxZ,jd_6b297f87eaff5,jd_cVUKwYXtUEcZ,jd_4337529e557ac,jd_75e5e2a4f7e13,jd_620b506d07889,jd_DyPZZzNZQFxZ,q450878-912928,jd_kuIoyQouhCLm,jd_qvAijclDYexz,jd_620b506d07889"];
 let temp = run_pins[0].split(',')
-let fixPins = temp.splice(temp.indexOf('jd_6cd93e613b0e5'), 1);
-fixPins.push(...temp.splice(temp.indexOf('被折叠的记忆33'), 1));
-const randomPins = getRandomArrayElements(temp, 4);
+let fixPins = temp.splice(temp.indexOf('whoami'), 1);
+fixPins.push(...temp.splice(temp.indexOf('whoam'), 1));
+const randomPins = getRandomArrayElements(temp, 5);
 temp = [...fixPins, ...randomPins];
 run_pins = [temp.join(',')];
 // $.LKYLToken = '76fe7794c475c18711e3b47185f114b5' || $.getdata('jdJoyRunToken');
 // $.LKYLToken = $.getdata('jdJoyRunToken');
-let friendsArr = ["jd_6cd93e613b0e5", "被折叠的记忆33", "jd_704a2e5e28a66", "jd_45a6b5953b15b", "zooooo58", "jd_66f5cecc1efcd", "jd_41345a6f96aa5"]
+let friendsArr = ["jd_620b506d07889", "jd_qvAijclDYexz", "jd_kuIoyQouhCLm", "jd_DyPZZzNZQFxZ", "q450878-912928"]
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
@@ -222,7 +222,7 @@ async function main() {
         console.log(`===========【开始助力好友赛跑】===========`)
         const runIndex = $.index > run_pins.length ? (run_pins.length - 1) : ($.index - 1);
         let new_run_pins = run_pins[runIndex].split(',');
-        await run(new_run_pins);
+        await run(new_invite_pins);
       }
       await showMsg();
     }
